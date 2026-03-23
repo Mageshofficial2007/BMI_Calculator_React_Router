@@ -1,7 +1,7 @@
 # Ex06 BMI Calculator
-## Date: 
 
 ## AIM
+
 To develop a responsive and interactive Body Mass Index (BMI) Calculator using React that allows users to input their height and weight, and calculates their BMI to categorize their health status (e.g., Underweight, Normal, Overweight, Obese).
 
 ## DESIGN STEPS
@@ -64,12 +64,111 @@ Create routing structure with react-router-dom:
 <li>Add styling using CSS or Tailwind.</li>
 
 ## PROGRAM
+# APP.jsx
+```
+import React, { useState } from "react";
+import "./App.css";
 
+function BMICalculator() {
+  const [weight, setWeight] = useState("");
+  const [height, setHeight] = useState("");
+  const [bmi, setBmi] = useState(null);
 
+  const calculateBMI = () => {
+    if (weight > 0 && height > 0) {
+      const heightInMeters = height / 100;
+      const bmiValue = (weight / (heightInMeters * heightInMeters)).toFixed(2);
+      setBmi(bmiValue);
+    }
+  };
+
+  return (
+    <div className="container">
+      <h1>BMI Calculator</h1>
+      <div className="input-group">
+        <label>Weight (kg):</label>
+        <input
+          type="number"
+          value={weight}
+          onChange={(e) => setWeight(e.target.value)}
+        />
+      </div>
+      <div className="input-group">
+        <label>Height (cm):</label>
+        <input
+          type="number"
+          value={height}
+          onChange={(e) => setHeight(e.target.value)}
+        />
+      </div>
+      <button onClick={calculateBMI}>Calculate</button>
+      {bmi && <h2>Your BMI: {bmi}</h2>}
+
+      {/* Footer */}
+      <footer className="footer">
+        <p>Developed by: <strong>MAGESH BOOPATHI M</strong></p>
+        <p>Register Number: <strong>212224230145</strong></p>
+      </footer>
+    </div>
+  );
+}
+
+export default BMICalculator;
+```
+# App.css
+```
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  text-align: center;
+  padding: 40px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.input-group {
+  margin: 15px 0;
+}
+
+input {
+  padding: 8px;
+  margin-left: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #ff9800;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #e68900;
+}
+
+.footer {
+  margin-top: 40px;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+}
+```
 
 ## OUTPUT
 
-
+![alt text](<Screenshot 2026-03-23 105114.png>)
 
 
 ## RESULT
